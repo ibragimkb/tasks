@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace TaskManager;
 
 class User
 {
@@ -28,7 +25,7 @@ class User
     /**
      * @return mixed
      */
-    public function getUserId() : int
+    public function getUserId()
     {
         return $this->aUserData['user_id'];
     }
@@ -36,7 +33,7 @@ class User
     /**
      * @return mixed
      */
-    public function getUserName() : string
+    public function getUserName()
     {
         return $this->aUserData['login'];
     }

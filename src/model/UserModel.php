@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace TaskManager;
 
 use PDO;
 
@@ -19,7 +16,7 @@ class UserModel
         $this->connection = $connection;
     }
 
-    public function getUser(string $login, string $password) : User
+    public function getUser($login, $password)
     {
         $st = $this->connection->prepare('SELECT user_id, admin FROM users WHERE login = :login AND password = :password');
         $st->bindParam(':login', $login);
@@ -34,7 +31,7 @@ class UserModel
     }
 
 
-    public function getSessionUser() : User
+    public function getSessionUser()
     {
         if (isset($_SESSION['user']) && $_SESSION['user']->getUserIsLogin()) {
             return $_SESSION['user'];

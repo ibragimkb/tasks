@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace TaskManager;
 
 use Smarty;
 
@@ -23,7 +20,7 @@ class View
 
     }
 
-    public function getMainPage(array &$aTasks, array &$aPages, int $iPage, User $oUser)
+    public function getMainPage(array &$aTasks, array &$aPages, $iPage, User $oUser)
     {
         $this->smarty->assign("title", "Main");
         $this->smarty->assign("aTasks", $aTasks);

@@ -38,7 +38,7 @@
 
                 {/if}
                 {if $task->getTaskEditedMark() == TRUE}
-                edit by admin
+                Edited by admin
                 {/if}
             </td>
             <td>

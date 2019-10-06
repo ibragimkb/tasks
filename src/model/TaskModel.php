@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace TaskManager;
 
 use PDO;
 
@@ -31,7 +28,7 @@ class TaskModel
         return $result[0]['tasks_count'];
     }
 
-    public function getTasks(int $limit, int $offset = 0, string $field = 'task_id', string $order = 'ASC'): array
+    public function getTasks($limit, $offset, $field, $order)
     {
         $sql = 'SELECT task_id, user_name, email, task_text, task_done, task_edited 
                   FROM tasks 
@@ -54,7 +51,7 @@ class TaskModel
         return $tasks;
     }
 
-    public function getTask(int $Id) : Task
+    public function getTask(int $Id)
     {
         $sql = 'SELECT task_id, user_name, email, task_text, task_done, task_edited 
                   FROM tasks WHERE task_id = :task_id';
@@ -69,7 +66,7 @@ class TaskModel
         return (new Task($result));
     }
 
-    public function addTask(Task $oTask) : bool
+    public function addTask(Task $oTask)
     {
         $st = $this->connection->prepare('INSERT INTO tasks (user_name, email, task_text) VALUES (:user_name, :email, :task_text)');
         $p1 = $oTask->getUserName();

@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace TaskManager;
 
 $sDirRoot = dirname(realpath(__FILE__)) . DIRECTORY_SEPARATOR;
 

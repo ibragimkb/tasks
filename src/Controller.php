@@ -1,8 +1,5 @@
 <?php
 
-declare(strict_types = 1);
-
-namespace TaskManager;
 
 use PDO;
 
@@ -21,7 +18,7 @@ class Controller
     public function __construct()
     {
         try {
-            $this->connection = new PDO("mysql:host=localhost;dbname=tasks;charset=utf8", '***', '***');
+            $this->connection = new PDO("mysql:host=localhost;dbname=wbox19;charset=utf8", 'tasks912', 'sKevwoGkU0ZcSang');
             $this->connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
         catch(PDOException $e)
@@ -75,6 +72,7 @@ class Controller
         $pages = round($c / $this::TASK_PER_PAGE + 0.4);
         $tasks = $this->tasks->getTasks($this::TASK_PER_PAGE, ($page - 1)* $this::TASK_PER_PAGE, $field, $order);
 
+        $p = [];
         for ($i=1; $i<=$pages; $i++) $p[$i] = $i;
         /*if (6 > $pages) {
             for ($i=1; $i<=$pages; $i++) $p[$i] = $i;
@@ -219,7 +217,7 @@ class Controller
     }
 
 
-    protected function getTaskIdFromRequest(array  &$aGet) : int
+    protected function getTaskIdFromRequest(array  &$aGet)
     {
         if (isset($aGet['task']) && is_numeric($aGet['task'])) {
             return intval($aGet['task']);
@@ -227,7 +225,7 @@ class Controller
         return 0;
     }
 
-    protected function validateFormData(array &$aFormData, array &$error) : bool
+    protected function validateFormData(array &$aFormData, array &$error)
     {
         if (!isset($aFormData['user_name'])
             || !isset($aFormData['email'])
@@ -265,7 +263,7 @@ class Controller
         return true;
     }
 
-    protected function validateAuthData(array &$aFormData) : bool
+    protected function validateAuthData(array &$aFormData)
     {
         if (!isset($aFormData['login']) || !isset($aFormData['password'])) return false;
 
@@ -277,7 +275,7 @@ class Controller
         return true;
     }
 
-    public function userIsValid() : bool
+    public function userIsValid()
     {
         if ($this->user->getSessionUser()->getUserIsLogin()
             && $this->user->getSessionUser()->getUserIsAdmin()
@@ -285,4 +283,4 @@ class Controller
         return false;
     }
 
-}
+}	
